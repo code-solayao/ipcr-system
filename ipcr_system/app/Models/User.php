@@ -45,4 +45,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function performance_tasks() {
+        return $this->belongsToMany(PerformanceTask::class);
+    }
 }

@@ -14,9 +14,8 @@ Route::controller(IpcrController::class)->group(function() {
 });
 
 Route::controller(IpcrController::class)->group(function() {
-    Route::post('/submit-tasks', 'submit_tasks')->name('submit.tasks');
+    Route::post('/po-table/create-task', 'create')->name('create.task');
+    Route::post('/po-table/collect-tasks', 'collect_tasks')->name('collect.tasks');
+    Route::put('/ipcr-sheet/{task}', 'update')->name('update.task');
+    Route::delete('/ipcr-sheet/{task}', 'destroy')->name('delete.task');
 });
-
-Route::post('/tasks', [IpcrController::class, 'store']);
-Route::put('/tasks/{task}', [IpcrController::class, 'update']);
-Route::delete('/tasks/{task}', [IpcrController::class, 'destroy']);

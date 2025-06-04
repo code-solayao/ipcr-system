@@ -16,7 +16,7 @@
     <div class="px-36 mt-10">
         <h1 class="text-3xl font-bold mb-5">To do list</h1>
 
-        <form action="/tasks" method="POST">
+        <form action="{{ route('create.task') }}" method="POST">
             @csrf
             <input type="text" name="title" id="title" class="form-input mb-3" placeholder="New task..." required />
             <input type="submit" value="Add" class="btn btn-primary" />
@@ -25,7 +25,7 @@
         <ul>
             @foreach ($tasks as $task)
                 <li>
-                    <form action="/tasks/{{ $task->id }}" method="POST">
+                    <form action="{{ route('update.task', $task->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <input type="submit" class="btn btn-primary" 
@@ -37,7 +37,7 @@
                         <strong>(Done)</strong>
                     @endif
 
-                    <form action="/tasks/{{ $task->id }}" method="POST" class="inline">
+                    <form action="{{ route('delete.task', $task->id) }}" method="POST" class="inline">
                         @csrf
                         @method('DELETE')
                         <input type="submit" value="Delete" class="btn btn-danger" />

@@ -48,10 +48,14 @@
     }
 
     .form-input {
-        @apply mt-1 block w-full border-2 border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 p-2;
+        @apply mb-3 block w-full border-2 border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 p-2;
     }
 
     .form-radio {
         @apply text-blue-500 border-gray-300 focus:ring-blue-500;
     }
+}
+
+h1 {
+    @apply text-[32px] font-bold;
 }

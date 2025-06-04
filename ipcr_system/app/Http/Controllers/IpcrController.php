@@ -20,13 +20,13 @@ class IpcrController extends Controller
         return view('ipcr-sheet');
     }
 
-    public function submit_tasks(Request $request) 
+    public function collect_tasks(Request $request) 
     {
         $tasks = $request->input('checkBox');
         return view('ipcr-sheet', compact('tasks'));
     }
 
-    public function store(Request $request) 
+    public function create(Request $request) 
     {
         $request->validate([
             'title' => 'required'
