@@ -13,7 +13,8 @@ class IpcrController extends Controller
     }
 
     public function view_po_table() {
-        return view('performance-objectives');
+        $tasks = PerformanceTask::all();
+        return view('performance-objectives', compact('tasks'));
     }
 
     public function view_sheet() {
@@ -22,21 +23,25 @@ class IpcrController extends Controller
 
     public function collect_tasks(Request $request) 
     {
-        $tasks = $request->input('checkBox');
+        $validated = $request->validate([
+            'tasks' => 'nullable|array',
+            'tasks.*' => 'exists:tasks,id',
+        ]);
+
         return view('ipcr-sheet', compact('tasks'));
     }
 
     public function create(Request $request) 
     {
         $request->validate([
-            'title' => 'required'
+            'description' => 'required'
         ]);
-        PerformanceTask::create($request->only('title'));
+        PerformanceTask::create($request->only('description'));
 
         return redirect()->back();
     }
 
-    public function update(Request $request, PerformanceTask $task) 
+    public function update(PerformanceTask $task, Request $request) 
     {
         $task->update([
             'is_completed' => !$task->is_completed

@@ -18,7 +18,7 @@
 
         <form action="{{ route('create.task') }}" method="POST">
             @csrf
-            <input type="text" name="title" id="title" class="form-input mb-3" placeholder="New task..." required />
+            <input type="text" name="description" id="description" class="form-input mb-3" placeholder="New task..." required />
             <input type="submit" value="Add" class="btn btn-primary" />
         </form>
 
@@ -32,10 +32,10 @@
                         value={{ $task->is_completed ? "Undo" : "Complete" }} />
                     </form>
 
-                    {{ $task->title }}
-                    @if ($task->is_completed)
+                    {{ $task->description }}
+                    {{-- @if ($task->is_completed)
                         <strong>(Done)</strong>
-                    @endif
+                    @endif --}}
 
                     <form action="{{ route('delete.task', $task->id) }}" method="POST" class="inline">
                         @csrf
