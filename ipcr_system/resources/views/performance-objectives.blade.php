@@ -19,7 +19,7 @@
             @if (count($tasks) == 0)
                 <h1 class="text-gray-500">No available tasks</h1>
             @else
-                <form action="{{ route('collect.tasks') }}" method="POST">
+                <form action="{{ route('select.tasks') }}" method="POST">
                     @csrf
                     @foreach ($tasks as $task)
                         <li>

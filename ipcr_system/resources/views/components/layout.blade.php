@@ -8,8 +8,25 @@
 </head>
 <body>
     <header class="bg-blue-400 shadow-md fixed top-0 left-0 w-full z-10">
-        <nav class="container mx-auto p-4 justify-between items-center">
+        <nav class="container mx-auto p-4 flex justify-between items-center">
             <a href="{{ url('/') }}" class="font-sans font-bold text-3xl text-white">IPCR System</a>
+            <div class="flex items-center space-x-4">
+                @guest
+                    <div class="flex flex-row-reverse">
+                        <a href="{{ route('view.login') }}" class="btn btn-secondary bg-blue-100 hover:bg-blue-200 text-blue-700 ml-5">Log In</a>
+                        <a href="{{ route('view.signup') }}" class="btn btn-secondary bg-indigo-500 hover:bg-indigo-400">Sign Up</a>
+                    </div>
+                @endguest
+                @auth
+                    <span class="text-white text-lg border-r-2 pr-2">
+                        Welcome, <b>{{ Auth::user()->name }}</b>
+                    </span>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <input type="submit" class="btn btn-secondary bg-blue-100 hover:bg-blue-200 text-blue-700" role="button" name="logout" value="Log Out" />
+                    </form>
+                @endauth
+            </div>
         </nav>
     </header>
     <div class="flex pt-16">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PerformanceTask;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IpcrController extends Controller
 {
@@ -17,18 +18,25 @@ class IpcrController extends Controller
         return view('performance-objectives', compact('tasks'));
     }
 
-    public function view_sheet() {
-        return view('ipcr-sheet');
-    }
-
-    public function collect_tasks(Request $request) 
+    public function view_sheet() 
     {
-        $validated = $request->validate([
-            'tasks' => 'nullable|array',
-            'tasks.*' => 'exists:tasks,id',
-        ]);
+        $tasks = session('tasks', []);
 
         return view('ipcr-sheet', compact('tasks'));
+    }
+
+    public function select_tasks(Request $request) 
+    {
+        $tasks = $request->input('tasks', []);
+        
+        $username = Auth::user();
+
+        $username->performance_tasks()->attach($tasks ?? []);
+
+        session(['tasks' => $tasks]);
+
+        return redirect()->route('view.sheet');
+        // return view('ipcr-sheet', compact('tasks'));
     }
 
     public function create(Request $request) 

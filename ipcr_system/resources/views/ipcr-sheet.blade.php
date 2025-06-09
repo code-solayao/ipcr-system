@@ -7,12 +7,11 @@
 @section('main', 'IPCR Sheet')
 
 <x-layout>
-    <p>
-        <b>Submitted: </b>
-        @if (empty($tasks))
-            Walang laman
-        @else
-            {{ $tasks }}
-        @endif
-    </p>
+    <ul>
+        @forelse ($tasks as $task)
+            <li>{{ $task }}</li>
+        @empty
+            <li>No task selected.</li>
+        @endforelse
+    </ul>
 </x-layout>
