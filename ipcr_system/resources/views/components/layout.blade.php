@@ -6,8 +6,8 @@
     <title>@yield('title', 'IPCR System')</title>
     @yield('vite')
 </head>
-<body>
-    <header class="bg-blue-400 shadow-md fixed top-0 left-0 w-full z-10">
+<body class="dark:bg-neutral-800">
+    <header class="bg-blue-400 dark:bg-sky-900 shadow-md fixed top-0 left-0 w-full z-10">
         <nav class="container mx-auto p-4 flex justify-between items-center">
             <a href="{{ url('/') }}" class="font-sans font-bold text-3xl text-white">IPCR System</a>
             <div class="flex items-center space-x-4">
@@ -37,7 +37,7 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <h1 class="text-gray-600">@yield('main', 'Title')</h1>
+                <h1 class="text-gray-600 dark:text-white">@yield('main', 'Title')</h1>
             </header>
             {{ $slot }}
         </main>
